@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/ppatthar/projects/DVGHeliddu/kagga/build/intermediates/pre-dexed/debug/support-v13-19.0.0-54259defb26166f4562dff9ee49375acda4d54c1.jar"
+        jar="/Users/ppatthar/tools/android-sdk-macosx/extras/android/m2repository/com/android/support/support-v13/19.0.0/support-v13-19.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="cc8ccb8ee435883471a5f5856b00f5f86d3f938c"/>
+    <item
+        dex="/Users/ppatthar/projects/DVGHeliddu/kagga/build/intermediates/pre-dexed/debug/support-v4-19.0.0-3c1f3fb4f5623ea65fc3fdcd9d4de9d2acc08cd5.jar"
+        jar="/Users/ppatthar/tools/android-sdk-macosx/extras/android/m2repository/com/android/support/support-v4/19.0.0/support-v4-19.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="afee690af14bd2c32d400cdf78e746fd45c386fa"/>
+
+</pre-dex-items>
