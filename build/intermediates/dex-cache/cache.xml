@@ -2,6 +2,12 @@
 <pre-dex-items>
 
     <item
+        dex="/Users/ppatthar/projects/DVGHeliddu/kagga/build/intermediates/pre-dexed/debug/gson-2.3-b2c6faf79de5d9bee3e38e1db389113a25d169a4.jar"
+        jar="/Users/ppatthar/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce"/>
+    <item
         dex="/Users/ppatthar/projects/DVGHeliddu/kagga/build/intermediates/pre-dexed/debug/support-v13-19.0.0-54259defb26166f4562dff9ee49375acda4d54c1.jar"
         jar="/Users/ppatthar/tools/android-sdk-macosx/extras/android/m2repository/com/android/support/support-v13/19.0.0/support-v13-19.0.0.jar"
         jumboMode="false"

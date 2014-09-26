@@ -5,6 +5,12 @@ import android.content.res.AssetManager;
 import android.util.JsonReader;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -15,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -43,32 +51,37 @@ public class Kagga {
         return rand.nextInt(KAGGA_TOTAL);
     }
 
-    public void readKagga(Integer kaggaNum) {
+    public KaggaDeserializer readKagga(Integer kaggaNum) {
         InputStream kaggaData;
         try {
             kaggaData = mContext.getAssets().open("kagga_data_split.json");
             BufferedReader reader = new BufferedReader(new InputStreamReader(kaggaData, "UTF-8"));
-            StringBuilder jsonStr = new StringBuilder();
+            String jsonStr = null;
             String line;
 
             while((line = reader.readLine()) != null) {
-                jsonStr.append(line);
+                jsonStr = line;
             }
 
-            JSONObject allKaggaObj = new JSONObject(jsonStr.toString());
-            JSONObject thisKagga = allKaggaObj.getJSONObject(kaggaNum.toString());
+            Gson gson = new Gson();
+            JsonParser parser = new JsonParser();
+            JsonArray jArray = parser.parse(jsonStr).getAsJsonArray();
 
-            if(thisKagga.getBoolean("content")) {
+            HashMap<Integer,KaggaDeserializer> kaggaMap = new HashMap<Integer, KaggaDeserializer>();
 
+            for(JsonElement obj: jArray) {
+                KaggaDeserializer kagga = gson.fromJson(obj, KaggaDeserializer.class);
+                kaggaMap.put(kagga.id, kagga);
             }
+
+            return kaggaMap.get(kaggaNum);
 
         }
         catch(Exception er){
             Log.e("Kagga" , "Error Occured" + er.getStackTrace());
         }
-        if(true) {
 
-        }
+        return null;
     }
 
     private HashMap<Integer, Integer> mKaggaRandomMap;

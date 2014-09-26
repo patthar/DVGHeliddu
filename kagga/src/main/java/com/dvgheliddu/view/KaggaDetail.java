@@ -1,5 +1,6 @@
 package com.dvgheliddu.view;
 
+import java.lang.reflect.Array;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dvgheliddu.data.Kagga;
+import com.dvgheliddu.data.KaggaDeserializer;
 import com.dvgheliddu.kagga.R;
 
 public class KaggaDetail extends Activity {
@@ -48,12 +50,11 @@ public class KaggaDetail extends Activity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        Kagga k = new Kagga(getApplicationContext());
-        k.readKagga(k.rollDice());
 
     }
 
@@ -146,8 +147,24 @@ public class KaggaDetail extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_kagga_detail, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+
+
+            Kagga k = new Kagga(getActivity().getBaseContext());
+            KaggaDeserializer thisKagga = k.readKagga(k.rollDice());
+
+
+            TextView kaggaTitle = (TextView) rootView.findViewById(R.id.section_label);
+            kaggaTitle.setText(thisKagga.getTitle());
+
+            TextView kaggaContent = (TextView) rootView.findViewById(R.id.section_content);
+            kaggaContent.setText(thisKagga.getKagga());
+
+            TextView kaggaTransliteration = (TextView) rootView.findViewById(R.id.section_transliteration);
+            kaggaTransliteration.setText(thisKagga.getTransliteration());
+
+            TextView kaggaTranslation = (TextView) rootView.findViewById(R.id.section_translation);
+            kaggaTranslation.setText(thisKagga.getTranslation());
+
             return rootView;
         }
     }
