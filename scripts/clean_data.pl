@@ -26,6 +26,7 @@ my $ctr=1;
 #close $temp;
 #close $fh;
 #exit;
+my @new_arr;
 foreach my $kagga (@$ds) {
     foreach my $key (keys %$kagga) {
 	my $content = $kagga->{$key};
@@ -36,11 +37,12 @@ foreach my $kagga (@$ds) {
 	} else {
 	    print "$key : not matched\n";
 	}
+	push @new_arr, $content;
     }
 }
 
-print $afh to_json($ds);
-print $aafh to_json($ds,{pretty => 1});
+print $afh to_json(\@new_arr);
+print $aafh to_json(\@new_arr,{pretty => 1});
 close $fh;
 close $afh;
 close $aafh;
