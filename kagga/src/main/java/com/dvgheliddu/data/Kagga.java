@@ -71,7 +71,7 @@ public class Kagga {
 
             for(JsonElement obj: jArray) {
                 KaggaDeserializer kagga = gson.fromJson(obj, KaggaDeserializer.class);
-                kaggaMap.put(kagga.id, kagga);
+                kaggaMap.put(kagga.getId(), kagga);
             }
 
             return kaggaMap.get(kaggaNum);

@@ -42,16 +42,16 @@ public class KaggaDeserializer {
     }
 
     public String getTransliteration() {
-        transliteration = String.valueOf(addNewlineToDanda(transliteration));
-        transliteration = String.valueOf(addNewlineToDheergaDanda(transliteration));
-        return transliteration;
+        String trans = String.valueOf(addNewlineToDanda(transliteration));
+        trans = String.valueOf(addNewlineToDheergaDanda(trans));
+        return trans;
     }
 
     public String getKagga() {
         //String transformData = kagga;
-        kagga = String.valueOf(addNewlineToDanda(kagga));
-        kagga = String.valueOf(addNewlineToDheergaDanda(kagga));
-        return kagga;
+        String kaggaStr = String.valueOf(addNewlineToDanda(kagga));
+        kaggaStr = String.valueOf(addNewlineToDheergaDanda(kaggaStr));
+        return kaggaStr;
     }
 
     public void setContent(String content) {

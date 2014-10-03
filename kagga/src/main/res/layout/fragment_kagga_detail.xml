@@ -22,6 +22,12 @@
         android:textSize="24dp"
         android:gravity="left"
         android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
     <TextView
         android:id="@+id/section_content"
@@ -30,10 +36,15 @@
         android:layout_alignParentLeft="true"
         android:layout_margin="1dp"
         android:gravity="center_horizontal|left"
-        android:textSize="16dp"
+        android:textSize="20dp"
         android:textStyle="normal"
         android:paddingTop="25dp" />
+    </LinearLayout>
 
+    <!--LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
         <TextView
             android:id="@+id/section_transliteration"
             android:layout_width="match_parent"
@@ -44,7 +55,12 @@
             android:textSize="14dp"
             android:textStyle="normal"
             android:paddingTop="25dp" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
         <TextView
             android:id="@+id/section_translation"
             android:layout_width="match_parent"
@@ -55,7 +71,7 @@
             android:textSize="14dp"
             android:textStyle="normal"
             android:paddingTop="25dp" />
-    </LinearLayout>
+    </LinearLayout-->
 </RelativeLayout>
 
 

@@ -45,10 +45,11 @@ public class KaggaDetail extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kagga_detail);
 
-
+        Kagga k = new Kagga(getBaseContext());
+        KaggaDeserializer thisKagga = k.readKagga(k.rollDice());
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), thisKagga);
 
 
         // Set up the ViewPager with the sections adapter.
@@ -86,15 +87,28 @@ public class KaggaDetail extends Activity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        KaggaDeserializer mKagga = null;
+
+        public SectionsPagerAdapter(FragmentManager fm, KaggaDeserializer kagga) {
+
             super(fm);
+            mKagga = kagga;
         }
 
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 0:
+                    return KaggaFragment.newInstance(position + 1, mKagga);
+                case 1:
+                    return TransliterationFragment.newInstance(position + 1, mKagga);
+                case 2:
+                    return TranslationFragment.newInstance(position + 1, mKagga);
+            }
+            return null;
+            //return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
@@ -117,56 +131,4 @@ public class KaggaDetail extends Activity {
             return null;
         }
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_kagga_detail, container, false);
-
-
-            Kagga k = new Kagga(getActivity().getBaseContext());
-            KaggaDeserializer thisKagga = k.readKagga(k.rollDice());
-
-
-            TextView kaggaTitle = (TextView) rootView.findViewById(R.id.section_label);
-            kaggaTitle.setText(thisKagga.getTitle());
-
-            TextView kaggaContent = (TextView) rootView.findViewById(R.id.section_content);
-            kaggaContent.setText(thisKagga.getKagga());
-
-            TextView kaggaTransliteration = (TextView) rootView.findViewById(R.id.section_transliteration);
-            kaggaTransliteration.setText(thisKagga.getTransliteration());
-
-            TextView kaggaTranslation = (TextView) rootView.findViewById(R.id.section_translation);
-            kaggaTranslation.setText(thisKagga.getTranslation());
-
-            return rootView;
-        }
-    }
-
 }
