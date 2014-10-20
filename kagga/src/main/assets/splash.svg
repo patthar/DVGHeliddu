@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="splash.svg">
+  <defs
+     id="defs4">
+    <filter
+       inkscape:label="Oil painting"
+       x="0"
+       y="0"
+       width="1"
+       height="1"
+       inkscape:menu="Image effects"
+       inkscape:menu-tooltip="Simulate oil painting style"
+       color-interpolation-filters="sRGB"
+       id="filter3882">
+      <feConvolveMatrix
+         targetY="1"
+         targetX="1"
+         in="SourceGraphic"
+         divisor="1"
+         kernelMatrix="0 -0.4 0 -0.4 2.6 -0.4 0 -0.4 0 "
+         order="3 3"
+         result="result1"
+         id="feConvolveMatrix3884" />
+      <feGaussianBlur
+         stdDeviation="3"
+         result="result2"
+         id="feGaussianBlur3886" />
+      <feMorphology
+         operator="dilate"
+         radius="10"
+         result="result4"
+         id="feMorphology3888" />
+      <feBlend
+         in="result4"
+         in2="result1"
+         mode="darken"
+         result="result3"
+         id="feBlend3890" />
+      <feComposite
+         operator="in"
+         in2="SourceGraphic"
+         id="feComposite3892"
+         result="fbSourceGraphic" />
+      <feColorMatrix
+         result="fbSourceGraphicAlpha"
+         in="fbSourceGraphic"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         id="feColorMatrix3894" />
+      <feMorphology
+         id="feMorphology3896"
+         radius="2"
+         in="fbSourceGraphic"
+         result="result0" />
+      <feTurbulence
+         id="feTurbulence3898"
+         numOctaves="1"
+         baseFrequency="0.078"
+         result="result91" />
+      <feDisplacementMap
+         id="feDisplacementMap3900"
+         in2="result91"
+         in="result0"
+         scale="6.3"
+         xChannelSelector="R"
+         yChannelSelector="G" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.55589227"
+     inkscape:cx="53.640222"
+     inkscape:cy="957.91942"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-grids="false"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-page="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="791"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:0.75416667000000004;fill:#008000;fill-opacity:0.95555557999999996;fill-rule:evenodd;stroke-width:1.74500000000000011;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter3882)"
+       id="rect3791"
+       width="480"
+       height="800"
+       x="0"
+       y="-800"
+       transform="scale(1,-1)"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="dvg"
+     style="display:inline">
+    <rect
+       style="opacity:0.75416667;fill:none;stroke-width:1.745;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect3794"
+       width="298.61902"
+       height="275.23322"
+       x="197.88007"
+       y="278.83099"
+       ry="0" />
+  </g>
+</svg>

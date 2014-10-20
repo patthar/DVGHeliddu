@@ -8,14 +8,21 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.dvgheliddu.view.KaggaDetail"
-            android:label="@string/app_name" >
+            android:name="com.dvgheliddu.view.SplashScreen"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="com.dvgheliddu.view.KaggaDetail">
+        </activity>
+        <receiver android:name="com.dvgheliddu.connectors.AlarmReceiver" android:enabled="true">
+        </receiver>
     </application>
 
 </manifest>

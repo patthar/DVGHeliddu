@@ -1,10 +1,12 @@
 package com.dvgheliddu.view;
 
 import android.app.Fragment;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dvgheliddu.data.Kagga;
@@ -32,6 +34,12 @@ public class KaggaFragment extends Fragment{
         return fragment;
     }
 
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setRetainInstance(true);
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_kagga_detail, container, false);
@@ -39,6 +47,7 @@ public class KaggaFragment extends Fragment{
 
         TextView kaggaTitle = (TextView) rootView.findViewById(R.id.section_label);
         kaggaTitle.setText(mKagga.getTitle());
+
         TextView kaggaContent = (TextView) rootView.findViewById(R.id.section_content);
         kaggaContent.setText(mKagga.getKagga());
 

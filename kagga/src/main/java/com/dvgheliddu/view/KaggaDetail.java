@@ -8,6 +8,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -44,12 +45,13 @@ public class KaggaDetail extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kagga_detail);
+        onNewIntent(getIntent());
 
-        Kagga k = new Kagga(getBaseContext());
-        KaggaDeserializer thisKagga = k.readKagga(k.rollDice());
+        //Kagga k = new Kagga(getBaseContext());
+        //KaggaDeserializer thisKagga = k.readKagga(k.rollDice());
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), thisKagga);
+        //mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), thisKagga);
 
 
         // Set up the ViewPager with the sections adapter.
@@ -87,12 +89,20 @@ public class KaggaDetail extends Activity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        public KaggaDeserializer getmKagga() {
+            return mKagga;
+        }
+
+        public void setmKagga(KaggaDeserializer mKagga) {
+            this.mKagga = mKagga;
+        }
+
         KaggaDeserializer mKagga = null;
 
         public SectionsPagerAdapter(FragmentManager fm, KaggaDeserializer kagga) {
 
             super(fm);
-            mKagga = kagga;
+            setmKagga(kagga);
         }
 
         @Override
@@ -101,11 +111,11 @@ public class KaggaDetail extends Activity {
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    return KaggaFragment.newInstance(position + 1, mKagga);
+                    return KaggaFragment.newInstance(position + 1, getmKagga());
                 case 1:
-                    return TransliterationFragment.newInstance(position + 1, mKagga);
+                    return TransliterationFragment.newInstance(position + 1, getmKagga());
                 case 2:
-                    return TranslationFragment.newInstance(position + 1, mKagga);
+                    return TranslationFragment.newInstance(position + 1, getmKagga());
             }
             return null;
             //return PlaceholderFragment.newInstance(position + 1);
@@ -129,6 +139,18 @@ public class KaggaDetail extends Activity {
                     return getString(R.string.title_section3).toUpperCase(l);
             }
             return null;
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        Bundle extras = intent.getExtras();
+        if(extras != null && extras.containsKey("koftd")) {
+            Kagga kagga = new Kagga(getBaseContext());
+            Integer num = (Integer) extras.get("koftd");
+            if(mSectionsPagerAdapter == null) {
+                mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), kagga.readKagga(num));
+            }
         }
     }
 }

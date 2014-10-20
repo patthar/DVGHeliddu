@@ -11,67 +11,59 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:id="@+id/linearLayout1">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/section_image"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="left|top"
+            android:src="@drawable/dvg_closeup" />
+
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/section_label"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="24dp"
         android:gravity="left"
-        android:textStyle="bold" />
-    </LinearLayout>
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/linearLayout1"
+        android:layout_toRightOf="@+id/linearLayout1"
+        android:layout_toEndOf="@+id/linearLayout1"
+        android:layout_alignParentTop="true" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:id="@+id/linearLayout2"
+        android:layout_below="@+id/linearLayout1"
+        android:weightSum="1">
 
     <TextView
         android:id="@+id/section_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_margin="1dp"
         android:gravity="center_horizontal|left"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="normal"
-        android:paddingTop="25dp" />
+        android:paddingTop="25dp"
+        android:layout_weight="10.33" />
     </LinearLayout>
 
-    <!--LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-        <TextView
-            android:id="@+id/section_transliteration"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_margin="1dp"
-            android:gravity="center_horizontal|left"
-            android:textSize="14dp"
-            android:textStyle="normal"
-            android:paddingTop="25dp" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-        <TextView
-            android:id="@+id/section_translation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_margin="1dp"
-            android:gravity="center_horizontal|left"
-            android:textSize="14dp"
-            android:textStyle="normal"
-            android:paddingTop="25dp" />
-    </LinearLayout-->
+
+
 </RelativeLayout>
 
 
