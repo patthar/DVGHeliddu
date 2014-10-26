@@ -5,13 +5,16 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,11 +23,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.dvgheliddu.connectors.TimePickerFragment;
 import com.dvgheliddu.data.Kagga;
 import com.dvgheliddu.data.KaggaDeserializer;
 import com.dvgheliddu.kagga.R;
 
-public class KaggaDetail extends Activity {
+public class KaggaDetail extends FragmentActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -46,12 +50,6 @@ public class KaggaDetail extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kagga_detail);
         onNewIntent(getIntent());
-
-        //Kagga k = new Kagga(getBaseContext());
-        //KaggaDeserializer thisKagga = k.readKagga(k.rollDice());
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        //mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), thisKagga);
 
 
         // Set up the ViewPager with the sections adapter.
@@ -77,6 +75,9 @@ public class KaggaDetail extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            //initiate alarm dialog fragment here
+            DialogFragment timePicker = new TimePickerFragment();
+            timePicker.show(getFragmentManager(), "timePicker" );
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -146,7 +147,7 @@ public class KaggaDetail extends Activity {
     protected void onNewIntent(Intent intent) {
         Bundle extras = intent.getExtras();
         if(extras != null && extras.containsKey("koftd")) {
-            Kagga kagga = new Kagga(getBaseContext());
+            Kagga kagga = Kagga.getInstance(getBaseContext());
             Integer num = (Integer) extras.get("koftd");
             if(mSectionsPagerAdapter == null) {
                 mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), kagga.readKagga(num));

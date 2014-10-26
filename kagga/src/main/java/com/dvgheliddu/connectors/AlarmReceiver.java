@@ -79,7 +79,7 @@ public class AlarmReceiver extends BroadcastReceiver{
             setmContext(ctx);
 
             //roll dice and get kagga number
-            Kagga k = new Kagga(ctx);
+            Kagga k = Kagga.getInstance(ctx);
             KaggaDeserializer thisKagga = k.readKagga(k.rollDice());
             setmKagga(thisKagga);
 
