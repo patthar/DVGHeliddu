@@ -1,11 +1,15 @@
 package com.dvgheliddu.view;
 
 import android.annotation.SuppressLint;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 
+import com.dvgheliddu.connectors.TimePickerFragment;
 import com.dvgheliddu.kagga.R;
 
 /**
@@ -63,6 +67,30 @@ public class KaggaHistoryListActivity extends Activity
         // TODO: If exposing deep links into your app, handle intents here.
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.kagga_detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            //initiate alarm dialog fragment here
+            DialogFragment timePicker = new TimePickerFragment();
+            timePicker.show(getFragmentManager(), "timePicker" );
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     /**
      * Callback method from {@link KaggaHistoryListFragment.Callbacks}
      * indicating that the item with the given ID was selected.
@@ -84,9 +112,16 @@ public class KaggaHistoryListActivity extends Activity
         } else {
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
-            Intent detailIntent = new Intent(this, KaggaHistoryDetailActivity.class);
-            detailIntent.putExtra(KaggaHistoryDetailFragment.ARG_ITEM_ID, id);
+
+            //new code here
+            Intent detailIntent = new Intent(this, KaggaDetail.class);
+            detailIntent.putExtra("koftd", id);
             startActivity(detailIntent);
+            //
+
+            //Intent detailIntent = new Intent(this, KaggaHistoryDetailActivity.class);
+            //detailIntent.putExtra(KaggaHistoryDetailFragment.ARG_ITEM_ID, id);
+            //startActivity(detailIntent);
         }
     }
 }

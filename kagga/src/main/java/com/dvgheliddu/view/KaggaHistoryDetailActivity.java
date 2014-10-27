@@ -1,11 +1,16 @@
 package com.dvgheliddu.view;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.app.NavUtils;
+import android.view.Menu;
 import android.view.MenuItem;
 
+import com.dvgheliddu.connectors.TimePickerFragment;
+import com.dvgheliddu.data.Kagga;
+import com.dvgheliddu.data.KaggaDeserializer;
 import com.dvgheliddu.kagga.R;
 
 /**
@@ -40,6 +45,16 @@ public class KaggaHistoryDetailActivity extends Activity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
+
+            //test re-use code from here
+
+            Kagga kaggaObj = Kagga.getInstance(getBaseContext());
+            KaggaDeserializer k = kaggaObj.readKagga(getIntent().getIntExtra(KaggaHistoryDetailFragment.ARG_ITEM_ID,0));
+
+
+            //ends here
+
+
             arguments.putInt(KaggaHistoryDetailFragment.ARG_ITEM_ID,
                     getIntent().getIntExtra(KaggaHistoryDetailFragment.ARG_ITEM_ID, 0));
             KaggaHistoryDetailFragment fragment = new KaggaHistoryDetailFragment();
@@ -49,6 +64,17 @@ public class KaggaHistoryDetailActivity extends Activity {
                     .commit();
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.kagga_detail, menu);
+        return true;
+    }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -62,6 +88,18 @@ public class KaggaHistoryDetailActivity extends Activity {
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
             NavUtils.navigateUpTo(this, new Intent(this, KaggaHistoryListActivity.class));
+            return true;
+        }
+        else if( id == R.id.action_settings) {
+
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+
+            //initiate alarm dialog fragment here
+            DialogFragment timePicker = new TimePickerFragment();
+            timePicker.show(getFragmentManager(), "timePicker" );
             return true;
         }
         return super.onOptionsItemSelected(item);

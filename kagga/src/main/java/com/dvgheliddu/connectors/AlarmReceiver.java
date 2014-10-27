@@ -35,7 +35,7 @@ public class AlarmReceiver extends BroadcastReceiver{
 
         Intent kaggaIntent = new Intent(ctx, KaggaDetail.class);
         kaggaIntent.putExtra("koftd", todaysKagga.getmKagga().getId());
-        Integer newnum = (Integer) kaggaIntent.getExtras().get("koftd");
+
 
         PendingIntent notifIntent = PendingIntent.getActivity(ctx, 0, kaggaIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(notifIntent);
