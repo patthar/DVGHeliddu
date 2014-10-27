@@ -7,5 +7,7 @@
     <string name="title_section3">Transliteration</string>
     <string name="action_settings">Settings</string>
     <string name="timePicker">timePicker</string>
+    <string name="title_kaggahistory_list">KaggaHistories</string>
+    <string name="title_kaggahistory_detail">KaggaHistory Detail</string>
 
 </resources>

@@ -30,7 +30,8 @@ public class SplashScreen extends Activity {
                 else {
                     Log.i("Alarm", "Alarm already set");
                 }
-
+                Intent i = new Intent(SplashScreen.this, KaggaHistoryListActivity.class);
+                startActivity(i);
                 // close this activity
                 finish();
             }
