@@ -107,7 +107,7 @@ public class Kagga implements Serializable {
         return randomNum;
     }
 
-    public KaggaDeserializer readKagga(Integer kaggaNum) {
+    private void initKaggaMap() {
         InputStream kaggaData;
         try {
             kaggaData = mContext.getAssets().open("kagga_data_split.json");
@@ -129,18 +129,28 @@ public class Kagga implements Serializable {
                 KaggaDeserializer kagga = gson.fromJson(obj, KaggaDeserializer.class);
                 kaggaMap.put(kagga.getId(), kagga);
             }
-
-            if(mKaggaSettings != null) {
-                mKaggaSettings.getmKaggaRandomMap().put(kaggaNum, 1);
-            }
-            save();
-            return kaggaMap.get(kaggaNum);
-
+            mKaggaSettings.setmKaggaMap(kaggaMap);
         }
         catch(Exception er){
             Log.e("Kagga" , "Error Occured" + er.getStackTrace());
         }
+    }
 
+    public KaggaDeserializer readKagga(Integer kaggaNum) {
+
+        if(mKaggaSettings != null) {
+            HashMap<Integer,KaggaDeserializer> kMap = mKaggaSettings.getmKaggaMap();
+            HashMap<Integer,Integer> kRandomMap = mKaggaSettings.getmKaggaRandomMap();
+            if( kMap == null) {
+                initKaggaMap();
+                kMap = mKaggaSettings.getmKaggaMap();
+            }
+            if(! kRandomMap.containsKey(kaggaNum)) {
+                mKaggaSettings.getmKaggaRandomMap().put(kaggaNum, 1);
+                mKaggaSettings.save();
+            }
+            return kMap.get(kaggaNum);
+        }
         return null;
     }
 
@@ -150,6 +160,16 @@ public class Kagga implements Serializable {
         return mKaggaRandomMap;
     }
     transient  Context  mContext = null;
+
+    public HashMap<Integer, KaggaDeserializer> getmKaggaMap() {
+        return mKaggaMap;
+    }
+
+    public void setmKaggaMap(HashMap<Integer, KaggaDeserializer> mKaggaMap) {
+        this.mKaggaMap = mKaggaMap;
+    }
+
+    transient  HashMap<Integer,KaggaDeserializer> mKaggaMap = null;
 
     public Integer getKaggaAlarmTimeHour() {
         return kaggaAlarmTimeHour;
