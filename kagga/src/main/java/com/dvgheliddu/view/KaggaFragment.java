@@ -16,7 +16,7 @@ import com.dvgheliddu.kagga.R;
 /**
  * Created by ppatthar on 02/10/14.
  */
-public class KaggaFragment extends Fragment{
+public class KaggaFragment extends android.support.v4.app.Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number1";
     private KaggaDeserializer mKagga = null;
 
@@ -37,7 +37,7 @@ public class KaggaFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setRetainInstance(true);
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

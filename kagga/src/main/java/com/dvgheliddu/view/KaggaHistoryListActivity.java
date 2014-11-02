@@ -5,18 +5,26 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 
 import com.dvgheliddu.connectors.TimePickerFragment;
+import com.dvgheliddu.data.Kagga;
+import com.dvgheliddu.data.KaggaDeserializer;
 import com.dvgheliddu.kagga.R;
+
+import java.util.Random;
 
 /**
  * An activity representing a list of KaggaHistories. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link KaggaHistoryDetailActivity} representing
+ * lead to a {@link com.dvgheliddu.view.KaggaDetail} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  * <p/>
@@ -28,7 +36,7 @@ import com.dvgheliddu.kagga.R;
  * {@link KaggaHistoryListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class KaggaHistoryListActivity extends Activity
+public class KaggaHistoryListActivity extends FragmentActivity
         implements KaggaHistoryListFragment.Callbacks {
 
     /**
@@ -64,7 +72,7 @@ public class KaggaHistoryListActivity extends Activity
             kaggaListFr.getFragmentManager().beginTransaction()
                     .replace(R.id.kaggahistory_list, kaggaListFr).commit();
         }
-        // TODO: If exposing deep links into your app, handle intents here.
+        // TODO: If exposing deep links in app, handle intents here.
     }
 
 
@@ -105,23 +113,20 @@ public class KaggaHistoryListActivity extends Activity
             arguments.putInt(KaggaHistoryDetailFragment.ARG_ITEM_ID, id);
             KaggaHistoryDetailFragment fragment = new KaggaHistoryDetailFragment();
             fragment.setArguments(arguments);
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.kaggahistory_detail_container, fragment)
                     .commit();
+
 
         } else {
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
 
-            //new code here
+
             Intent detailIntent = new Intent(this, KaggaDetail.class);
             detailIntent.putExtra("koftd", id);
             startActivity(detailIntent);
-            //
 
-            //Intent detailIntent = new Intent(this, KaggaHistoryDetailActivity.class);
-            //detailIntent.putExtra(KaggaHistoryDetailFragment.ARG_ITEM_ID, id);
-            //startActivity(detailIntent);
         }
     }
 }

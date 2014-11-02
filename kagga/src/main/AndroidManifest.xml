@@ -39,17 +39,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
         </activity>
-        <activity
-            android:name="com.dvgheliddu.view.KaggaHistoryDetailActivity"
-            android:label="@string/title_kaggahistory_detail"
-
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:parentActivityName="com.dvgheliddu.view.KaggaHistoryListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.dvgheliddu.view.KaggaHistoryListActivity" />
-        </activity>
     </application>
 
 </manifest>

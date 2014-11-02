@@ -2,11 +2,15 @@ package com.dvgheliddu.view;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.dvgheliddu.connectors.SectionsPagerAdapter;
 import com.dvgheliddu.data.Kagga;
 import com.dvgheliddu.data.KaggaDeserializer;
 import com.dvgheliddu.data.KaggaHistory;
@@ -14,13 +18,13 @@ import com.dvgheliddu.kagga.R;
 
 import com.dvgheliddu.view.dummy.DummyContent;
 
+import java.util.Random;
+
 /**
  * A fragment representing a single KaggaHistory detail screen.
- * This fragment is either contained in a {@link KaggaHistoryListActivity}
- * in two-pane mode (on tablets) or a {@link KaggaHistoryDetailActivity}
- * on handsets.
+ * This fragment is  contained in a {@link KaggaHistoryListActivity}
  */
-public class KaggaHistoryDetailFragment extends Fragment {
+public class KaggaHistoryDetailFragment extends android.support.v4.app.Fragment {
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -31,6 +35,9 @@ public class KaggaHistoryDetailFragment extends Fragment {
      * The dummy content this fragment is presenting.
      */
     private KaggaDeserializer mItem;
+
+    SectionsPagerAdapter mSectionsPagerAdapter;
+    ViewPager mViewPager;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -44,27 +51,27 @@ public class KaggaHistoryDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(( ARG_ITEM_ID))) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
             if(getArguments().getInt(ARG_ITEM_ID) != 0) {
                 Kagga k = Kagga.getInstance(getActivity().getBaseContext());
 
                 mItem = k.readKagga(getArguments().getInt(ARG_ITEM_ID));
             }
         }
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager(), mItem, getActivity());
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         View rootView = inflater.inflate(R.layout.fragment_kaggahistory_detail, container, false);
+        mViewPager = (ViewPager) rootView.findViewById(R.id.kaggahistory_detail_pager);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.kaggahistory_detail)).setText(mItem.getKagga());
-        }
-
-        return rootView;
+       return rootView;
     }
 }

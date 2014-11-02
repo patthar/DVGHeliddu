@@ -17,7 +17,7 @@ import com.dvgheliddu.kagga.R;
 
 
 
-public class TransliterationFragment extends Fragment {
+public class TransliterationFragment extends android.support.v4.app.Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number2";
         private KaggaDeserializer mKagga = null;
@@ -38,7 +38,7 @@ public class TransliterationFragment extends Fragment {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            setRetainInstance(true);
+
         }
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
